@@ -59,7 +59,7 @@ defmodule Aoc.Twenty.DayTwo do
   defp get_total_appearances_on_password(pass, letter) do
     pass
     |> String.split("", trim: true)
-    |> Enum.count(fn l -> l == letter end)
+    |> Enum.count(&(&1 == letter))
   end
 
   defp is_correct_password?(total, start, finish), do: total in start..finish
