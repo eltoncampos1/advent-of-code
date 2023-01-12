@@ -8,14 +8,15 @@ defmodule Aoc.Twenty.DayThree do
       |> Enum.with_index()
 
     fields
-    |> Enum.map(fn {row, index} ->
-      if index * 3 > String.length(row) do
-        String.at(row, rem(index * 3, String.length(row)))
-      else
-        String.at(row, index * 3)
-      end
-    end)
-    |> Enum.filter(& &1)
+    |> Enum.map(&find_trees(&1, 3))
     |> Enum.count(&(&1 == "#"))
+  end
+
+  defp find_trees({row, index}, value) do
+    if index * value > String.length(row) do
+      String.at(row, rem(index * value, String.length(row)))
+    else
+      String.at(row, index * value)
+    end
   end
 end
